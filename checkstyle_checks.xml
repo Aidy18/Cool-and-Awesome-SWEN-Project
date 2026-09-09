@@ -193,5 +193,15 @@
       <!-- The check is suppressed in the next line of code after the comment -->
       <property name="influenceFormat" value="1"/>
     </module>
+    <!-- New rule for code indentation -->
+    <module name="Indentation">
+      <property name="basicOffset" value="4"/>
+      <property name="caseIndent" value="4"/>
+      <!-- Referring to case blocks in a switch statement -->
+      <property name="throwsIndent" value="8"/>
+      <!-- Throws statements expected to be 8 spaces indented on a separate line -->
+      <property name="lineWrappingIndentation" value="8"/>
+      <property name="arrayInitIndent" value="4"/>
+    </module>
   </module>
 </module>
