@@ -1,3 +1,2 @@
-# Software Engineering Project Starter Code
-
-This repo will start you off with an initial configuration that you'll modify as part of Checkpoint 1. As part of the modifications, you'll eventually delete the contents of this README and replace it with documentation for your project.
+# System Computation
+This system will find all of the prime numbers up to the given integer n, where n is a positive integer > 0 and < Integer.MAX_VALUE
