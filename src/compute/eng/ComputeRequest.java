@@ -1,6 +1,6 @@
-package computeEng;
+package compute.eng;
 
-import dataStore.IntData;
+import datastore.IntData;
 
 public interface ComputeRequest {
     IntData getData();
