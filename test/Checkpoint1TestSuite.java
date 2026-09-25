@@ -154,6 +154,7 @@ public class Checkpoint1TestSuite {
         URL url = new URI(toCurl).toURL();
 
         String result = "";
+        System.out.println(url);      
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"))) {
             String line; 
             while ((line = reader.readLine()) != null) {

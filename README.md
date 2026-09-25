@@ -1,3 +1,5 @@
 # Software Engineering Project Starter Code
 
-This repo will start you off with an initial configuration that you'll modify as part of Checkpoint 1. As part of the modifications, you'll eventually delete the contents of this README and replace it with documentation for your project.
+This system will find the largest prime factor of the input number n, where n is a positive integer such that n > 0 and n < Integer.MAX_VALUE
+
+<img width="760" height="320" alt="API Diagram Draft" src="assets/API Diagram Draft.png" />
