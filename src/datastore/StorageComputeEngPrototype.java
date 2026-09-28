@@ -8,7 +8,7 @@ public class StorageComputeEngPrototype {
         return null;
     }
     
-    public void write(StoreRequest request, IntData data) {
+    /* public void write(StoreRequest request, IntData data) {
         //nothing here yet
-    }
+    } */
 }
