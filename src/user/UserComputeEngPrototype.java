@@ -4,7 +4,7 @@ import project.annotations.NetworkAPIPrototype;
 
 public class UserComputeEngPrototype {
     @NetworkAPIPrototype
-    public void compute(ComputeRequest computeRequest) {
+    public void computePrototype(UserComputeEngAPI api) {
         //nothing here yet
     }
 }

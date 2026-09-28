@@ -4,7 +4,7 @@ import project.annotations.ProcessAPIPrototype;
 
 public class StorageComputeEngPrototype {
     @ProcessAPIPrototype
-    public IntData read(StoreRequest storeRequest) {
+    public IntData readWritePrototype(StorageComputeEngAPI api) {
         return null;
     }
     
