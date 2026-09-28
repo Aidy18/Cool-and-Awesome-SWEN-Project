@@ -3,7 +3,6 @@ package datastore;
 import project.annotations.ProcessAPIPrototype;
 
 public class StorageComputeEngPrototype {
-    
     @ProcessAPIPrototype
     public IntData read(StoreRequest storeRequest) {
         return null;
