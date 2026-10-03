@@ -4,7 +4,7 @@ import project.annotations.ConceptualAPIPrototype;
 
 public class ComputationPrototype {
     @ConceptualAPIPrototype
-    public Result computeResult(ComputeRequest computeRequest) {
+    public Result prototypeComputation(ComputationAPI api) {
         return null;
     }
 }

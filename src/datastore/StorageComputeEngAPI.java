@@ -3,7 +3,7 @@ package datastore;
 import project.annotations.ProcessAPI;
 
 @ProcessAPI
-public interface StorageComputeEng {
+public interface StorageComputeEngAPI {
     IntData read(StoreRequest storeRequest);
     void write(StoreRequest storeRequest, IntData data);
 }
