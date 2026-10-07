@@ -7,8 +7,4 @@ public class StorageComputeEngPrototype {
     public IntData readWritePrototype(StorageComputeEngAPI api) {
         return null;
     }
-    
-    /* public void write(StoreRequest request, IntData data) {
-        //nothing here yet
-    } */
 }
