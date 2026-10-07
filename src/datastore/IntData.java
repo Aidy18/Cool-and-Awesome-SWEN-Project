@@ -1,5 +1,5 @@
 package datastore;
 
 public interface IntData {
-    int[] getIntegers();
+    DataVal getInts();
 }
