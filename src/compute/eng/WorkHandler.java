@@ -19,8 +19,9 @@ public class WorkHandler implements UserComputeEngAPI {
         this.computationAPI = computationAPI;
     }
     
+    // 1. Take in the user request & validate
     @Override
     public UserComputeResponse compute(UserComputeRequest request) {
-        
+        return null;
     }
 }
