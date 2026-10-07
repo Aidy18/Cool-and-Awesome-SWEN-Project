@@ -5,6 +5,36 @@ import project.annotations.NetworkAPIPrototype;
 public class UserComputeEngPrototype {
     @NetworkAPIPrototype
     public void prototypeClient(UserComputeEngAPI api) {
-        //nothing here yet
+        // 1. specify the source + destination
+        Source inputSource = new Source() {
+
+        };
+
+        Destination outputDestination = new Destination() {
+
+        };
+
+        // 2. create the request with ',' as the default delimiter
+        UserComputeRequest request = new UserComputeRequest() {
+            public Source getSource() {
+                return inputSource;
+            }
+
+            public Destination getDestination() {
+                return outputDestination;
+            }
+
+            public String getDelimiter() {
+                return ",";
+            }
+
+            public boolean useDefaultDelimiter() {
+                return true;
+            }
+        };
+
+        // 3 output the work submitted to the handler
+        UserComputeResponse submitted = api.compute(request);
+        System.out.println("Job submitted: " + submitted);
     }
 }
