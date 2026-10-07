@@ -10,11 +10,17 @@ public class StorageComputeEngPrototype {
     public void prototypeClient(StorageComputeEngAPI api) {
         // 1. Get the source + destination, then make a request
         Source source = new Source() {
-
+            @Override
+            public String getPath() {
+                return "foo.txt";
+            }
         };
 
         Destination destination = new Destination() {
-
+            @Override
+            public String getPath() {
+                return "bar.txt";
+            }
         };
 
         StoreRequest storageRequest = new StoreRequest() {

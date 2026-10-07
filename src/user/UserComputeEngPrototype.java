@@ -7,11 +7,17 @@ public class UserComputeEngPrototype {
     public void prototypeClient(UserComputeEngAPI api) {
         // 1. specify the source + destination
         Source inputSource = new Source() {
-
+            @Override
+            public String getPath() {
+                return "foo.txt";
+            }
         };
 
         Destination outputDestination = new Destination() {
-
+            @Override
+            public String getPath() {
+                return "bar.txt";
+            }
         };
 
         // 2. create the request with ',' as the default delimiter

@@ -13,7 +13,7 @@ import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.any;
 
 public class TestComputationAPI {
-    
+
     @Test
     public void testComputation() throws Exception {
         DataVal mockDataVal = Mockito.mock(DataVal.class);
@@ -22,9 +22,9 @@ public class TestComputationAPI {
         when(mockIntData.getInts()).thenReturn(mockDataVal);
         ComputationRequest mockRequest = Mockito.mock(ComputationRequest.class);
         when(mockRequest.getData()).thenReturn(mockIntData);
-        
+
         StorageComputeEngAPI mockStorageAPI = Mockito.mock(StorageComputeEngAPI.class);
-        
+
         ComputationAPIImplementation testAPI = new ComputationAPIImplementation(mockStorageAPI);
         Assertions.assertEquals(testAPI.computeResult(mockRequest).isGPF(), false);
     }
