@@ -4,5 +4,5 @@ import project.annotations.NetworkAPI;
 
 @NetworkAPI
 public interface UserComputeEngAPI {
-    void compute(UserComputeRequest computeRequest);
+    UserComputeResponse compute(UserComputeRequest computeRequest);
 }

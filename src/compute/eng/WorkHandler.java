@@ -18,4 +18,9 @@ public class WorkHandler implements UserComputeEngAPI {
         this.storeAPI = storeAPI;
         this.computationAPI = computationAPI;
     }
+    
+    @Override
+    public UserComputeResponse compute(UserComputeRequest request) {
+        
+    }
 }
