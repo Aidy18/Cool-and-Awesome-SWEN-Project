@@ -2,7 +2,8 @@ package compute.eng;
 
 import project.annotations.ConceptualAPIPrototype;
 import datastore.IntData;
-import datastore.DataVal;
+
+import java.util.List;
 
 public class ComputationPrototype {
     @ConceptualAPIPrototype
@@ -13,8 +14,13 @@ public class ComputationPrototype {
             public IntData getData() {
                 return new IntData() {
                     @Override
-                    public DataVal getInts() {
+                    public List<Integer> getInts() {
                         return null;
+                    }
+
+                    @Override
+                    public Integer getIntAt(int index) {
+                        return 0;
                     }
                 };
             }

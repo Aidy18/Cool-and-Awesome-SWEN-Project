@@ -15,9 +15,9 @@ public class TestUserComputeEngAPI {
     public void testUserAPI() {
         ComputationAPI mockCompAPI = Mockito.mock(ComputationAPI.class);
         UserComputeEngAPIImplementation testAPI = new UserComputeEngAPIImplementation(mockCompAPI);
-        
+
         UserComputeRequest mockRequest = Mockito.mock(UserComputeRequest.class);
-        
+
         Assertions.assertEquals(testAPI.compute(mockRequest).isGPF(), false);
     }
 }

@@ -23,6 +23,6 @@ public class TestStorageComputeEngAPI {
         StoreRequest mockRequest = Mockito.mock(StoreRequest.class);
         when(mockRequest.getSource()).thenReturn(mockSource);
 
-        Assertions.assertEquals(testAPI.read(mockRequest).getInts().getValue(), 6);
+        Assertions.assertEquals(testAPI.read(mockRequest).getIntAt(0), 6);
     }
 }
