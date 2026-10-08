@@ -22,11 +22,6 @@ public class ComputationPrototype {
                     public Integer getIntAt(int index) {
                         return 0;
                     }
-                    
-                    @Override
-                    public void add(Integer num) {
-                        return;
-                    }
                 };
             }
         };

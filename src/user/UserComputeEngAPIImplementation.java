@@ -3,10 +3,10 @@ package user;
 import compute.eng.ComputationAPI;
 
 public class UserComputeEngAPIImplementation implements UserComputeEngAPI {
-    private final ComputationAPI computeAPI;
+    //private final ComputationAPI computeAPI;
 
-    public UserComputeEngAPIImplementation(ComputationAPI computeAPI) {
-        this.computeAPI = computeAPI;
+    public UserComputeEngAPIImplementation() {
+        //this.computeAPI = computeAPI;
     }
 
     @Override

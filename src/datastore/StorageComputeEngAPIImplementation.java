@@ -4,10 +4,10 @@ import compute.eng.ComputationAPI;
 import compute.eng.ComputationResult;
 
 public class StorageComputeEngAPIImplementation implements StorageComputeEngAPI {
-    private final ComputationAPI compAPI;
+    //private final ComputationAPI compAPI;
 
-    public StorageComputeEngAPIImplementation(ComputationAPI compAPI) {
-        this.compAPI = compAPI;
+    public StorageComputeEngAPIImplementation() {
+        //this.compAPI = compAPI;
     }
 
     @Override

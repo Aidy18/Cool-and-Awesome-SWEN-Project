@@ -24,12 +24,13 @@ public class TestComputationAPI {
         IntData mockIntData = Mockito.mock(IntData.class);
         when(mockIntData.getInts()).thenReturn(new ArrayList<>(Arrays.asList(5)));
         when(mockIntData.getIntAt(anyInt())).thenReturn(5);
+        
         ComputationRequest mockRequest = Mockito.mock(ComputationRequest.class);
         when(mockRequest.getData()).thenReturn(mockIntData);
 
-        StorageComputeEngAPI mockStorageAPI = Mockito.mock(StorageComputeEngAPI.class);
+        //StorageComputeEngAPI mockStorageAPI = Mockito.mock(StorageComputeEngAPI.class);
 
-        ComputationAPIImplementation testAPI = new ComputationAPIImplementation(mockStorageAPI);
+        ComputationAPIImplementation testAPI = new ComputationAPIImplementation();
         Assertions.assertEquals(testAPI.computeResult(mockRequest).isGPF(), false);
     }
 }
