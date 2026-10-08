@@ -28,7 +28,4 @@ dependencies {
 
 test {
     useJUnitPlatform()
-	exclude '**/computetest/**'
-	exclude '**/datastoretest/**'
-	exclude '**/usertest/**'
 }
