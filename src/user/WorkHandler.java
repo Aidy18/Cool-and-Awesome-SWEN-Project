@@ -65,11 +65,6 @@ public class WorkHandler implements UserComputeEngAPI {
 
         // 7. Return a response to the user indicating success or fail
         String msg = "";
-        if (result.isGPF()) {
-            msg = "success";
-        } else {
-            msg = "failure";
-        }
-        return new UserComputeResponse(result.isGPF(), msg);
+        return new UserComputeResponse(result.getGPF(), msg);
     }
 }

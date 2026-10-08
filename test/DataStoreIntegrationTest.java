@@ -34,6 +34,6 @@ public class DataStoreIntegrationTest implements StorageComputeEngAPI {
 
         TestDestination destination = (TestDestination) request.getDestination();
 
-        destination.getOutput().add(Boolean.toString(result.isGPF()));
+        destination.getOutput().add(Integer.toString(result.getGPF()));
     }
 }

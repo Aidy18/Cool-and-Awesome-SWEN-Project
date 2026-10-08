@@ -44,8 +44,8 @@ public class StorageComputeEngPrototype {
         ComputationResult result = new ComputationResult() {
 
             @Override
-            public boolean isGPF() {
-                return false;
+            public Integer getGPF() {
+                return 1;
             }
         };
 

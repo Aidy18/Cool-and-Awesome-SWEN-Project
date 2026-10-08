@@ -15,8 +15,8 @@ import static org.mockito.Mockito.when;
 public class TestStorageComputeEngAPI {
     @Test
     public void testStorageAPI() {
-        ComputationAPI mockCompAPI = Mockito.mock(ComputationAPI.class);
-        StorageComputeEngAPIImplementation testAPI = new StorageComputeEngAPIImplementation(mockCompAPI);
+        //ComputationAPI mockCompAPI = Mockito.mock(ComputationAPI.class);
+        StorageComputeEngAPIImplementation testAPI = new StorageComputeEngAPIImplementation();
 
         Source mockSource = Mockito.mock(Source.class);
         when(mockSource.getPath()).thenReturn("foo.txt");

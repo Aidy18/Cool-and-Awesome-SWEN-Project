@@ -1,15 +1,15 @@
 package user;
 
 public class UserComputeResponse {
-    private final boolean gpf;
+    private final Integer gpf;
     private final String message;
 
-    public UserComputeResponse(boolean gpf, String message) {
+    public UserComputeResponse(Integer gpf, String message) {
         this.gpf = gpf;
         this.message = message;
     }
 
-    public boolean isGPF() {
+    public Integer isGPF() {
         return gpf;
     }
 

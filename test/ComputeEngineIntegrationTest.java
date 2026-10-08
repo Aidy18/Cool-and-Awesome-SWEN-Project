@@ -6,6 +6,12 @@ import org.junit.jupiter.api.Test;
 
 import compute.eng.ComputationAPI;
 import compute.eng.ComputationAPIImplementation;
+import user.Destination;
+import user.Source;
+import user.UserComputeEngAPI;
+import user.UserComputeRequest;
+import user.UserComputeResponse;
+import user.WorkHandler;
 
 public class ComputeEngineIntegrationTest {
     @Test
@@ -18,6 +24,36 @@ public class ComputeEngineIntegrationTest {
         
         ComputationAPI computationAPI = new ComputationAPIImplementation();
         
-        UserComputeEng userAPI = new 
+        UserComputeEngAPI userAPI = new WorkHandler(storageAPI, computationAPI);
+        
+        TestSource source = new TestSource(input);
+        TestDestination destination = new TestDestination(output);
+        
+        UserComputeRequest request =
+                new UserComputeRequest() {
+
+                    @Override
+                    public Source getSource() {
+                        return source;
+                    }
+
+                    @Override
+                    public Destination getDestination() {
+                        return destination;
+                    }
+
+                    @Override
+                    public String getDelimiter() {
+                        return null;
+                    }
+
+                    @Override
+                    public boolean useDefaultDelimiter() {
+                        return false;
+                    }
+                };
+                
+                UserComputeResponse response = userAPI.compute(request);
+                List<String> expected = Arrays.asList("none", "5", "5");
     }
 }

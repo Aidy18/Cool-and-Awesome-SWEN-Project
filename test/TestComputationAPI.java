@@ -31,6 +31,6 @@ public class TestComputationAPI {
         //StorageComputeEngAPI mockStorageAPI = Mockito.mock(StorageComputeEngAPI.class);
 
         ComputationAPIImplementation testAPI = new ComputationAPIImplementation();
-        Assertions.assertEquals(testAPI.computeResult(mockRequest).isGPF(), false);
+        Assertions.assertEquals(testAPI.computeResult(mockRequest).getGPF(), 1);
     }
 }
