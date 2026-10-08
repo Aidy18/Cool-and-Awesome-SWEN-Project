@@ -1,6 +1,6 @@
 package user;
 
-//user-defined source
+// user-defined source
 public interface Source {
     String getPath();
 }

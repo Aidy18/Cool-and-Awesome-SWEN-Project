@@ -1,4 +1,5 @@
 package user_test;
+
 import user.UserComputeEngAPI;
 import user.UserComputeRequest;
 import user.UserComputeResponse;
@@ -18,9 +19,9 @@ public class TestUserComputeEngAPI {
     public void testUserAPI() {
         ComputationAPI mockCompAPI = Mockito.mock(ComputationAPI.class);
         StorageComputeEngAPI mockStoreAPI = Mockito.mock(StorageComputeEngAPI.class);
-        
+
         UserComputeEngAPI testAPI = new WorkHandler(mockStoreAPI, mockCompAPI);
-        
+
         UserComputeRequest mockRequest = Mockito.mock(UserComputeRequest.class);
 
         Assertions.assertEquals(testAPI.compute(mockRequest).getGPF(), 1);
