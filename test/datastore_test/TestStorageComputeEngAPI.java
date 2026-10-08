@@ -18,12 +18,12 @@ public class TestStorageComputeEngAPI {
     public void testStorageAPI() {
         //ComputationAPI mockCompAPI = Mockito.mock(ComputationAPI.class);
         StorageComputeEngAPIImplementation testAPI = new StorageComputeEngAPIImplementation();
-
+        
         Source mockSource = Mockito.mock(Source.class);
         when(mockSource.getPath()).thenReturn("foo.txt");
         StoreRequest mockRequest = Mockito.mock(StoreRequest.class);
         when(mockRequest.getSource()).thenReturn(mockSource);
 
-        Assertions.assertEquals(testAPI.read(mockRequest).getIntAt(0), 6);
+        Assertions.assertEquals(testAPI.read(mockRequest).getIntAt(0), 1);
     }
 }

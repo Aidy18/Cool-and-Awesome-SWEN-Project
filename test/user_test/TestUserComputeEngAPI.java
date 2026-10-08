@@ -23,6 +23,6 @@ public class TestUserComputeEngAPI {
         
         UserComputeRequest mockRequest = Mockito.mock(UserComputeRequest.class);
 
-        Assertions.assertEquals(testAPI.compute(mockRequest).isGPF(), false);
+        Assertions.assertEquals(testAPI.compute(mockRequest).getGPF(), 1);
     }
 }

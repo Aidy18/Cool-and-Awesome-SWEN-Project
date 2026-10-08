@@ -9,7 +9,7 @@ public class UserComputeResponse {
         this.message = message;
     }
 
-    public Integer isGPF() {
+    public Integer getGPF() {
         return gpf;
     }
 

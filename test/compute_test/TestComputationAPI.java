@@ -1,4 +1,5 @@
 package compute_test;
+
 import compute.eng.ComputationAPIImplementation;
 import compute.eng.ComputationRequest;
 import datastore.StorageComputeEngAPI;
@@ -22,15 +23,18 @@ public class TestComputationAPI {
 
     @Test
     public void testComputation() throws Exception {
+        // Mock the request with mocked IntData
         IntData mockIntData = Mockito.mock(IntData.class);
         when(mockIntData.getInts()).thenReturn(new ArrayList<>(Arrays.asList(5)));
         when(mockIntData.getIntAt(anyInt())).thenReturn(5);
-        
+
         ComputationRequest mockRequest = Mockito.mock(ComputationRequest.class);
         when(mockRequest.getData()).thenReturn(mockIntData);
 
-        //StorageComputeEngAPI mockStorageAPI = Mockito.mock(StorageComputeEngAPI.class);
+        // StorageComputeEngAPI mockStorageAPI =
+        // Mockito.mock(StorageComputeEngAPI.class);
 
+        // Test the computation with the mocked object
         ComputationAPIImplementation testAPI = new ComputationAPIImplementation();
         Assertions.assertEquals(testAPI.computeResult(mockRequest).getGPF(), 1);
     }
