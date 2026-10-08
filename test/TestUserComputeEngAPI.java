@@ -1,7 +1,9 @@
-import user.UserComputeEngAPIImplementation;
+import user.UserComputeEngAPI;
 import user.UserComputeRequest;
 import user.UserComputeResponse;
+import user.WorkHandler;
 import compute.eng.ComputationAPI;
+import datastore.StorageComputeEngAPI;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -14,8 +16,10 @@ public class TestUserComputeEngAPI {
     @Test
     public void testUserAPI() {
         ComputationAPI mockCompAPI = Mockito.mock(ComputationAPI.class);
-        UserComputeEngAPIImplementation testAPI = new UserComputeEngAPIImplementation(mockCompAPI);
-
+        StorageComputeEngAPI mockStoreAPI = Mockito.mock(StorageComputeEngAPI.class);
+        
+        UserComputeEngAPI testAPI = new WorkHandler(mockStoreAPI, mockCompAPI);
+        
         UserComputeRequest mockRequest = Mockito.mock(UserComputeRequest.class);
 
         Assertions.assertEquals(testAPI.compute(mockRequest).isGPF(), false);

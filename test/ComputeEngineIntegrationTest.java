@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import compute.eng.ComputationAPI;
+import compute.eng.ComputationAPIImplementation;
+
 public class ComputeEngineIntegrationTest {
     @Test
     public void testComputeEng() {
@@ -14,5 +17,7 @@ public class ComputeEngineIntegrationTest {
         DataStoreIntegrationTest storageAPI = new DataStoreIntegrationTest();
         
         ComputationAPI computationAPI = new ComputationAPIImplementation();
+        
+        UserComputeEng userAPI = new 
     }
 }

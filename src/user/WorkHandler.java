@@ -1,13 +1,11 @@
-package compute.eng;
+package user;
 
+import compute.eng.ComputationAPI;
+import compute.eng.ComputationRequest;
+import compute.eng.ComputationResult;
 import datastore.IntData;
 import datastore.StorageComputeEngAPI;
 import datastore.StoreRequest;
-import user.Destination;
-import user.Source;
-import user.UserComputeEngAPI;
-import user.UserComputeRequest;
-import user.UserComputeResponse;
 
 //demonstrates the communication flow of APIs
 public class WorkHandler implements UserComputeEngAPI {
