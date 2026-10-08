@@ -1,4 +1,4 @@
-package compute_test;
+package computetest;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,9 +9,9 @@ import org.junit.jupiter.api.Test;
 
 import compute.eng.ComputationAPI;
 import compute.eng.ComputationAPIImplementation;
-import datastore_test.DataStoreIntegrationTest;
-import datastore_test.TestDestination;
-import datastore_test.TestSource;
+import datastoretest.DataStoreIntegrationTest;
+import datastoretest.TestDestination;
+import datastoretest.TestSource;
 import user.Destination;
 import user.Source;
 import user.UserComputeEngAPI;

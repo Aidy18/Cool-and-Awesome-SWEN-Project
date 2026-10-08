@@ -1,4 +1,4 @@
-package compute_test;
+package computetest;
 
 import compute.eng.ComputationAPIImplementation;
 import compute.eng.ComputationRequest;

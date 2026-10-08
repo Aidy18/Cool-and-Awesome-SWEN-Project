@@ -1,4 +1,4 @@
-package datastore_test;
+package datastoretest;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package user_test;
+package usertest;
 
 import user.UserComputeEngAPI;
 import user.UserComputeRequest;
