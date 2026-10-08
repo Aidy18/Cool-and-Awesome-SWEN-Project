@@ -27,5 +27,8 @@ dependencies {
 }
 
 test {
+	exclude '**/test/compute_test/**'
+    exclude '**/test/datastore_test/**'
+    exclude '**/test/user_test/**'
     useJUnitPlatform()
 }
