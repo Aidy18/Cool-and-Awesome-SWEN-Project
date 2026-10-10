@@ -2,6 +2,6 @@ package compute.eng;
 
 import datastore.IntData;
 
-public interface ComputeRequest {
+public interface ComputationRequest {
     IntData getData();
 }

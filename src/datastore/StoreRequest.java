@@ -1,6 +1,11 @@
 package datastore;
 
-//stores the stream into a wrapper
+import user.Source;
+import user.Destination;
+
+// requests storage from the specified source to the destination
 public interface StoreRequest {
-    IntData getData();
+    Source getSource();
+
+    Destination getDestination();
 }

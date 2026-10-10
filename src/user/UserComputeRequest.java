@@ -1,8 +1,11 @@
 package user;
 
-public interface ComputeRequest {
+public interface UserComputeRequest {
     Source getSource();
+
     Destination getDestination();
+
     String getDelimiter();
+
     boolean useDefaultDelimiter();
 }
