@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry kind="con" path="org.eclipse.buildship.core.gradleclasspathcontainer"/>
 	<classpathentry kind="output" path="bin/default"/>
 	<classpathentry output="bin/main" kind="src" path="src">
 		<attributes>
 			<attribute name="gradle_scope" value="main"/>
 			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry output="bin/test" kind="src" path="test">
+		<attributes>
+			<attribute name="gradle_scope" value="test"/>
+			<attribute name="gradle_used_by_scope" value="test"/>
+			<attribute name="test" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-21/"/>
@@ -48,6 +56,12 @@
 			<attribute name="test" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry sourcepath="/home/aidy18/.gradle/caches/modules-2/files-2.1/fr.inria.gforge.spoon/spoon-core/11.2.1/7f8d7110e444597a1c680e4ac33aac6eb6b923/spoon-core-11.2.1-sources.jar" kind="lib" path="/home/aidy18/.gradle/caches/modules-2/files-2.1/fr.inria.gforge.spoon/spoon-core/11.2.1/86705f73119929fa83ac4b5143b0667759de5ae1/spoon-core-11.2.1.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="test"/>
+			<attribute name="test" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry sourcepath="/home/aidy18/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy/1.14.11/67010508a95b30eff7fc6f8ffe16b6d03fc57b99/byte-buddy-1.14.11-sources.jar" kind="lib" path="/home/aidy18/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy/1.14.11/725602eb7c8c56b51b9c21f273f9df5c909d9e7d/byte-buddy-1.14.11.jar">
 		<attributes>
 			<attribute name="gradle_used_by_scope" value="test"/>
@@ -55,6 +69,84 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry sourcepath="/home/aidy18/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.14.11/24b0a9ff16c37f036011cd1bfb67075df87c96b7/byte-buddy-agent-1.14.11-sources.jar" kind="lib" path="/home/aidy18/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.14.11/f9cb566608fbac6bc7bf54901a7aa11543a989ee/byte-buddy-agent-1.14.11.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="test"/>
+			<attribute name="test" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/aidy18/.gradle/caches/modules-2/files-2.1/org.eclipse.jdt/org.eclipse.jdt.core/3.41.0/a4704ad1a5fbe12d1255fe9672abf2eae344f65b/org.eclipse.jdt.core-3.41.0-sources.jar" kind="lib" path="/home/aidy18/.gradle/caches/modules-2/files-2.1/org.eclipse.jdt/org.eclipse.jdt.core/3.41.0/6ce386e67a53c63b3263df52d90dcd428eaa3354/org.eclipse.jdt.core-3.41.0.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="test"/>
+			<attribute name="test" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/aidy18/.gradle/caches/modules-2/files-2.1/com.martiansoftware/jsap/2.1/d17c260c8f5eb6e7d6bd75449a57edfeb53d2305/jsap-2.1.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="test"/>
+			<attribute name="test" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/aidy18/.gradle/caches/modules-2/files-2.1/org.apache.maven.shared/maven-invoker/3.3.0/786e94dedac379452918eb12901dfea9c8003067/maven-invoker-3.3.0-sources.jar" kind="lib" path="/home/aidy18/.gradle/caches/modules-2/files-2.1/org.apache.maven.shared/maven-invoker/3.3.0/a4b04e28abf90c3528868545176c5fcd6dcfa06a/maven-invoker-3.3.0.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="test"/>
+			<attribute name="test" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/aidy18/.gradle/caches/modules-2/files-2.1/org.apache.maven.shared/maven-shared-utils/3.4.2/c115fdc7d050a3ea1858909eeec050cc3c1736cf/maven-shared-utils-3.4.2-sources.jar" kind="lib" path="/home/aidy18/.gradle/caches/modules-2/files-2.1/org.apache.maven.shared/maven-shared-utils/3.4.2/bfa28296272a5915b08de9f11f34a94b0a818fd0/maven-shared-utils-3.4.2.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="test"/>
+			<attribute name="test" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/aidy18/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/2.0.17/d7da5e7fecb3544b1e32f86dc0ef5d5ecf9f381b/slf4j-api-2.0.17-sources.jar" kind="lib" path="/home/aidy18/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/2.0.17/d9e58ac9c7779ba3bf8142aff6c830617a7fe60f/slf4j-api-2.0.17.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="test"/>
+			<attribute name="test" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/aidy18/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-compress/1.27.1/c90678c885e13d0c2ea971f05f8fc15004906d0f/commons-compress-1.27.1-sources.jar" kind="lib" path="/home/aidy18/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-compress/1.27.1/a19151084758e2fbb6b41eddaa88e7b8ff4e6599/commons-compress-1.27.1.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="test"/>
+			<attribute name="test" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/aidy18/.gradle/caches/modules-2/files-2.1/commons-io/commons-io/2.19.0/12ccc61c573aed8a193f9727dc33795eba29d7c5/commons-io-2.19.0-sources.jar" kind="lib" path="/home/aidy18/.gradle/caches/modules-2/files-2.1/commons-io/commons-io/2.19.0/1f8d4a99ba72b77aa69101175efc79b0c7dcdd7e/commons-io-2.19.0.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="test"/>
+			<attribute name="test" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/aidy18/.gradle/caches/modules-2/files-2.1/org.apache.maven/maven-model/3.6.0/b0c793cc939d7406180a0bf5e1612e33108a7821/maven-model-3.6.0-sources.jar" kind="lib" path="/home/aidy18/.gradle/caches/modules-2/files-2.1/org.apache.maven/maven-model/3.6.0/6d73e6218a10cfe82cf0325b582cbed732cc751/maven-model-3.6.0.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="test"/>
+			<attribute name="test" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/aidy18/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.17.0/f409092a9f723034a839327029255900a19742b4/commons-lang3-3.17.0-sources.jar" kind="lib" path="/home/aidy18/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.17.0/b17d2136f0460dcc0d2016ceefca8723bdf4ee70/commons-lang3-3.17.0.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="test"/>
+			<attribute name="test" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/aidy18/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.19.1/d7e758209231c5947ca0b2b5ff1b70ffa4c3dd13/jackson-annotations-2.19.1-sources.jar" kind="lib" path="/home/aidy18/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.19.1/37e4f0c5dba684e00137defdb04ad9df95920c44/jackson-annotations-2.19.1.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="test"/>
+			<attribute name="test" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/aidy18/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.19.1/7c08eb9308a088957cb1fc9ff93f5bc10c2bcf27/jackson-core-2.19.1-sources.jar" kind="lib" path="/home/aidy18/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.19.1/6e5a8cb8a6cada322497cefb7726657d98aaee15/jackson-core-2.19.1.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="test"/>
+			<attribute name="test" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/aidy18/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.19.1/dd9a5f49c1e722518406c238d6cdaa1574c1cf61/jackson-databind-2.19.1-sources.jar" kind="lib" path="/home/aidy18/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.19.1/e8cb8e76faea3e0791165f5d3614fc45933b2ee0/jackson-databind-2.19.1.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="test"/>
+			<attribute name="test" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/aidy18/.gradle/caches/modules-2/files-2.1/org.jspecify/jspecify/1.0.0/f1a67bbcf2f9f282baf3821046563983f16ca9b2/jspecify-1.0.0-sources.jar" kind="lib" path="/home/aidy18/.gradle/caches/modules-2/files-2.1/org.jspecify/jspecify/1.0.0/7425a601c1c7ec76645a78d22b8c6a627edee507/jspecify-1.0.0.jar">
 		<attributes>
 			<attribute name="gradle_used_by_scope" value="test"/>
 			<attribute name="test" value="true"/>
@@ -69,6 +161,30 @@
 	<classpathentry sourcepath="/home/aidy18/.gradle/caches/modules-2/files-2.1/org.apiguardian/apiguardian-api/1.1.2/e0787a997746ac32639e0bf3cb27af8dce8a3428/apiguardian-api-1.1.2-sources.jar" kind="lib" path="/home/aidy18/.gradle/caches/modules-2/files-2.1/org.apiguardian/apiguardian-api/1.1.2/a231e0d844d2721b0fa1b238006d15c6ded6842a/apiguardian-api-1.1.2.jar">
 		<attributes>
 			<attribute name="gradle_used_by_scope" value=""/>
+			<attribute name="test" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/aidy18/.gradle/caches/modules-2/files-2.1/org.eclipse.jdt/ecj/3.41.0/d42f4a19794491b9df4a7bac56707f4b373c7d00/ecj-3.41.0-sources.jar" kind="lib" path="/home/aidy18/.gradle/caches/modules-2/files-2.1/org.eclipse.jdt/ecj/3.41.0/85fcc33ed386425923566e604f3b114d71cef6b7/ecj-3.41.0.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="test"/>
+			<attribute name="test" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/aidy18/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-utils/3.1.0/d4062783613c4c6cf909c939d15fd1f2b584db03/plexus-utils-3.1.0-sources.jar" kind="lib" path="/home/aidy18/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-utils/3.1.0/60eecb6f15abdb1c653ad80abaac6fe188b3feaa/plexus-utils-3.1.0.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="test"/>
+			<attribute name="test" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/aidy18/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.17.1/335f6edc3ea89bb9ed0febd6685aff864dc8f4d4/commons-codec-1.17.1-sources.jar" kind="lib" path="/home/aidy18/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.17.1/973638b7149d333563584137ebf13a691bb60579/commons-codec-1.17.1.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="test"/>
+			<attribute name="test" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/aidy18/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/a00123f261762a7c5e0ec916a2c7c8298d29c400/javax.inject-1-sources.jar" kind="lib" path="/home/aidy18/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="test"/>
 			<attribute name="test" value="true"/>
 		</attributes>
 	</classpathentry>
