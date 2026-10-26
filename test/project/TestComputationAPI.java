@@ -31,12 +31,14 @@ public class TestComputationAPI {
 
         ComputationRequest mockRequest = Mockito.mock(ComputationRequest.class);
         when(mockRequest.getData()).thenReturn(mockIntData);
+        
+        StorageComputeEngAPI storageAPI = Mockito.mock(StorageComputeEngAPI.class);
 
         // StorageComputeEngAPI mockStorageAPI =
         // Mockito.mock(StorageComputeEngAPI.class);
 
         // Test the computation with the mocked object
-        ComputationAPIImplementation testAPI = new ComputationAPIImplementation();
+        ComputationAPIImplementation testAPI = new ComputationAPIImplementation(storageAPI);
         Assertions.assertEquals(testAPI.computeResult(mockRequest).getGPF(), 1);
     }
 }

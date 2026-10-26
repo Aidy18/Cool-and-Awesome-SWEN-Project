@@ -26,7 +26,7 @@ public class ComputeEngineIntegrationTest {
 
         // Instantiate the live implemented APIs
         DataStoreIntegrationTest storageAPI = new DataStoreIntegrationTest();
-        ComputationAPI computationAPI = new ComputationAPIImplementation();
+        ComputationAPI computationAPI = new ComputationAPIImplementation(storageAPI);
         UserComputeEngAPI userAPI = new WorkHandler(storageAPI, computationAPI);
 
         // Define source/destination to extract from the input/output lists
