@@ -24,6 +24,10 @@ public class ComputationPrototype {
                     }
                 };
             }
+            @Override
+            public Integer getDataValue() {
+                return 0;
+            }
         };
         // 2. Compute the result with the data and output
         ComputationResult result = api.computeResult(request);

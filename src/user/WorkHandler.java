@@ -55,6 +55,10 @@ public class WorkHandler implements UserComputeEngAPI {
             public IntData getData() {
                 return data;
             }
+            @Override
+            public Integer getDataValue() {
+                return data.getIntAt(0);
+            }
         };
 
         // 5. Compute the data
