@@ -1,5 +1,9 @@
 package datastore;
 
+import java.util.List;
+
 public interface IntData {
-    int[] getIntegers();
+    List<Integer> getInts();
+
+    Integer getIntAt(int index);
 }
