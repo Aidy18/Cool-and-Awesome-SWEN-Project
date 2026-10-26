@@ -24,7 +24,11 @@ public class ComputationAPIImplementation implements ComputationAPI {
 
     private Integer getGreatestPrimeFactor(Integer n) {
         Integer largestPrime = -1;
-
+        
+        // No prime factors exist for 0 and 1
+        if (n < 2) {
+           return largestPrime; 
+        }
         // Any even factors are taken out
         while (n % 2 == 0) {
             largestPrime = 2;
@@ -40,8 +44,8 @@ public class ComputationAPIImplementation implements ComputationAPI {
             }
         }
 
-        // A remainder > 2 means n itself is prime
-        if (n > 2) {
+        // A remainder > 1 means n itself is prime
+        if (n > 1) {
             largestPrime = n;
         }
 
