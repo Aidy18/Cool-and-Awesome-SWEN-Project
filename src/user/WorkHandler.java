@@ -49,26 +49,31 @@ public class WorkHandler implements UserComputeEngAPI {
             throw new IllegalArgumentException("Data not found");
         }
 
-        // 4. Send a request to compute the data
-        ComputationRequest computationRequest = new ComputationRequest() {
-            @Override
-            public IntData getData() {
-                return data;
-            }
-            @Override
-            public Integer getDataValue() {
-                return data.getIntAt(0);
-            }
-        };
+        Integer lastResult = -1;
 
-        // 5. Compute the data
-        ComputationResult result = computationAPI.computeResult(computationRequest);
+        for (Integer val : data.getInts()) {
+            // 4. Make a request for each data value
+            ComputationRequest computationRequest = new ComputationRequest() {
+                @Override
+                public IntData getData() {
+                    return data;
+                }
 
-        // 6. Write the result out to the destination
-        storeAPI.write(storeRequest, result);
+                @Override
+                public Integer getDataValue() {
+                    return val;
+                }
+            };
+            // 5. Do the computation(s)
+            ComputationResult result = computationAPI.computeResult(computationRequest);
+
+            // 6. Write the result out to the destination
+            storeAPI.write(storeRequest, result);
+            lastResult = result.getGreatestPrimeFactor();
+        }
 
         // 7. Return a response to the user indicating success or fail
         String msg = "";
-        return new UserComputeResponse(result.getGreatestPrimeFactor(), msg);
+        return new UserComputeResponse(lastResult, msg);
     }
 }

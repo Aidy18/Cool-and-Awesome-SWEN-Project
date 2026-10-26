@@ -12,7 +12,8 @@ public class UserComputeResponse {
     public Integer getGPF() {
         return gpf;
     }
-
+    
+    // Note: this field may be phased out soon
     public String getMessage() {
         return message;
     }
