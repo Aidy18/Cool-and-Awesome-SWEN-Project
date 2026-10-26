@@ -40,6 +40,6 @@ public class DataStoreIntegrationTest implements StorageComputeEngAPI {
         // Quick test to write some output
         TestDestination destination = (TestDestination) request.getDestination();
 
-        destination.getOutput().add(Integer.toString(result.getGPF()));
+        destination.getOutput().add(Integer.toString(result.getGreatestPrimeFactor()));
     }
 }

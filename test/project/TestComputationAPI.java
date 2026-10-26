@@ -39,6 +39,6 @@ public class TestComputationAPI {
 
         // Test the computation with the mocked object
         ComputationAPIImplementation testAPI = new ComputationAPIImplementation(storageAPI);
-        Assertions.assertEquals(testAPI.computeResult(mockRequest).getGPF(), 1);
+        Assertions.assertEquals(testAPI.computeResult(mockRequest).getGreatestPrimeFactor(), 1);
     }
 }

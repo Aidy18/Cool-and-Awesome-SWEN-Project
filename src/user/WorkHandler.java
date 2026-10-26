@@ -65,6 +65,6 @@ public class WorkHandler implements UserComputeEngAPI {
 
         // 7. Return a response to the user indicating success or fail
         String msg = "";
-        return new UserComputeResponse(result.getGPF(), msg);
+        return new UserComputeResponse(result.getGreatestPrimeFactor(), msg);
     }
 }
