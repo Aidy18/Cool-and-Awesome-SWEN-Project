@@ -72,7 +72,7 @@ public class WorkHandler implements UserComputeEngAPI {
             lastResult = result.getGreatestPrimeFactor();
         }
 
-        // 7. Return a response to the user indicating success or fail
+        // 7. Return a response to the user indicating the last computed result
         String msg = "";
         return new UserComputeResponse(lastResult, msg);
     }

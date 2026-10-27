@@ -29,6 +29,7 @@ public class ComputationAPIImplementation implements ComputationAPI {
         if (n < 2) {
            return largestPrime; 
         }
+        
         // Any even factors are taken out
         while (n % 2 == 0) {
             largestPrime = 2;
