@@ -17,20 +17,20 @@ public class DataStoreIntegrationTest implements StorageComputeEngAPI {
         // Test to read some input
         TestSource source = (TestSource) request.getSource();
         List<Integer> input = source.getInput();
-        for (Integer num : input) {
-            System.out.print(num + ", ");
+        
+        if(input == null || input.isEmpty()) {
+            throw new IllegalArgumentException("Input not found");
         }
-        System.out.println();
 
         return new IntData() {
             @Override
             public List<Integer> getInts() {
-                return new ArrayList<Integer>(Arrays.asList(0));
+                return new ArrayList<Integer>(input);
             }
 
             @Override
             public Integer getIntAt(int index) {
-                return getInts().get(0);
+                return input.get(index);
             }
         };
     }
