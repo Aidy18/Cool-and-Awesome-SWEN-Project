@@ -10,7 +10,7 @@ import datastore.StoreRequest;
 import compute.eng.ComputationResult;
 import datastore.IntData;
 
-public class DataStoreIntegrationTest implements StorageComputeEngAPI {
+public class InMemoryDataStore implements StorageComputeEngAPI {
 
     @Override
     public IntData read(StoreRequest request) {
@@ -39,7 +39,15 @@ public class DataStoreIntegrationTest implements StorageComputeEngAPI {
     public void write(StoreRequest request, ComputationResult result) {
         // Quick test to write some output
         TestDestination destination = (TestDestination) request.getDestination();
-
-        destination.getOutput().add(Integer.toString(result.getGreatestPrimeFactor()));
+        
+        // Verify edge cases
+        String finalValue;
+        if(result.getGreatestPrimeFactor() < 2) {
+            finalValue = "none";
+        }
+        else {
+            finalValue = Integer.toString(result.getGreatestPrimeFactor());
+        }
+        destination.getOutput().add(finalValue);
     }
 }

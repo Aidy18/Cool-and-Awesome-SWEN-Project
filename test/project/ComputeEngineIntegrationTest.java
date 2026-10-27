@@ -25,7 +25,7 @@ public class ComputeEngineIntegrationTest {
         List<String> output = new ArrayList<>();
 
         // Instantiate the live implemented APIs
-        DataStoreIntegrationTest storageAPI = new DataStoreIntegrationTest();
+        InMemoryDataStore storageAPI = new InMemoryDataStore();
         ComputationAPI computationAPI = new ComputationAPIImplementation(storageAPI);
         UserComputeEngAPI userAPI = new WorkHandler(storageAPI, computationAPI);
 

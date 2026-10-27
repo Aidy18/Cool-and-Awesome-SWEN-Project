@@ -34,5 +34,6 @@ test {
     	includeTestsMatching "TestComputationAPI*"
     	includeTestsMatching "TestUserComputeEngAPI*"
     	includeTestsMatching "TestStorageCompute*"
+    	includeTestsMatching "ComputeEngineIntegrationTest*"
     }
 }
