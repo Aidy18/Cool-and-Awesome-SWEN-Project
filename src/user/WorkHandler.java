@@ -20,6 +20,7 @@ public class WorkHandler implements UserComputeEngAPI {
     // 1. Take in the user request & validate
     @Override
     public UserComputeResponse compute(UserComputeRequest request) {
+        /* commented out for testing purposes
         if (request == null) {
             throw new IllegalArgumentException("Request cannot be null");
         }
@@ -28,7 +29,7 @@ public class WorkHandler implements UserComputeEngAPI {
         }
         if (request.getDestination() == null) {
             throw new IllegalArgumentException("Please provide a valid destination");
-        }
+        }*/
         // 2. Send a storage request to store from source to destination
         StoreRequest storeRequest = new StoreRequest() {
             @Override

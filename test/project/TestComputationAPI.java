@@ -26,19 +26,18 @@ public class TestComputationAPI {
     public void testComputation() throws Exception {
         // Mock the request with mocked IntData
         IntData mockIntData = Mockito.mock(IntData.class);
-        when(mockIntData.getInts()).thenReturn(new ArrayList<>(Arrays.asList(5)));
-        when(mockIntData.getIntAt(anyInt())).thenReturn(5);
+        when(mockIntData.getInts()).thenReturn(new ArrayList<>(Arrays.asList(25)));
+        when(mockIntData.getIntAt(anyInt())).thenReturn(25);
 
         ComputationRequest mockRequest = Mockito.mock(ComputationRequest.class);
         when(mockRequest.getData()).thenReturn(mockIntData);
+        when(mockRequest.getDataValue()).thenReturn(25);
         
         StorageComputeEngAPI storageAPI = Mockito.mock(StorageComputeEngAPI.class);
 
-        // StorageComputeEngAPI mockStorageAPI =
-        // Mockito.mock(StorageComputeEngAPI.class);
-
         // Test the computation with the mocked object
         ComputationAPIImplementation testAPI = new ComputationAPIImplementation(storageAPI);
-        Assertions.assertEquals(testAPI.computeResult(mockRequest).getGreatestPrimeFactor(), 1);
+        System.out.println(testAPI.computeResult(mockRequest).getGreatestPrimeFactor());
+        Assertions.assertEquals(testAPI.computeResult(mockRequest).getGreatestPrimeFactor(), 5);
     }
 }

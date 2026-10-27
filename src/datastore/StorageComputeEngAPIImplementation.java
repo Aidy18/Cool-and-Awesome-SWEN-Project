@@ -29,10 +29,11 @@ public class StorageComputeEngAPIImplementation implements StorageComputeEngAPI 
             List<Integer> numbers = new ArrayList<>();
 
             for (String line : lines) {
-                String trimmedLine = line.trim();
+                String trimmed = line.trim();
 
-                if (!trimmedLine.isEmpty()) {
-                    String[] values = trimmedLine.split(",");
+                if (!trimmed.isEmpty()) {
+                    // Handling the default delimiter only for now
+                    String[] values = trimmed.split(",");
 
                     for (String value : values) {
                         numbers.add(Integer.parseInt(value.trim()));
@@ -44,6 +45,7 @@ public class StorageComputeEngAPIImplementation implements StorageComputeEngAPI 
                 throw new IllegalArgumentException("Input file contains no integers");
             }
 
+            // Flush after every run
             outputResults.clear();
 
             return new IntData() {
@@ -66,10 +68,16 @@ public class StorageComputeEngAPIImplementation implements StorageComputeEngAPI 
     @Override
     public void write(StoreRequest storeRequest, ComputationResult result) {
         Destination destination = storeRequest.getDestination();
+        String parsedResult;
+        if(result.getGreatestPrimeFactor() < 2) {
+            parsedResult = "none";
+        }
+        else {
+            parsedResult = Integer.toString(result.getGreatestPrimeFactor());
+        }
+        outputResults.add(parsedResult);
 
-        outputResults.add(Integer.toString(result.getGreatestPrimeFactor()));
-
-        // Write all results as a single comma-separated line.
+        // Write all to one comma-separated line
         String output = String.join(",", outputResults);
 
         try {
