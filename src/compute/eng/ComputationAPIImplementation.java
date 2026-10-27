@@ -5,9 +5,13 @@ import datastore.StorageComputeEngAPI;
 
 public class ComputationAPIImplementation implements ComputationAPI {
     private final StorageComputeEngAPI storageAPI;
-
+    
     public ComputationAPIImplementation(StorageComputeEngAPI storageAPI) {
         this.storageAPI = storageAPI;
+    }
+    
+    public ComputationAPIImplementation() {
+        this.storageAPI = null;
     }
 
     @Override

@@ -18,6 +18,10 @@ public class StorageComputeEngAPIImplementation implements StorageComputeEngAPI 
     public StorageComputeEngAPIImplementation(ComputationAPI compAPI) {
         this.compAPI = compAPI;
     }
+    
+    public StorageComputeEngAPIImplementation() {
+        this.compAPI = null;
+    }
 
     @Override
     public IntData read(StoreRequest storeRequest) {
