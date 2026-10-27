@@ -14,7 +14,6 @@ import user.Source;
 public class StorageComputeEngAPIImplementation implements StorageComputeEngAPI {
     private final ComputationAPI compAPI;
     private final List<String> outputResults = new ArrayList<>();
-    
 
     public StorageComputeEngAPIImplementation(ComputationAPI compAPI) {
         this.compAPI = compAPI;
@@ -42,8 +41,7 @@ public class StorageComputeEngAPIImplementation implements StorageComputeEngAPI 
             }
 
             if (numbers.isEmpty()) {
-                throw new IllegalArgumentException(
-                        "Input file contains no integers");
+                throw new IllegalArgumentException("Input file contains no integers");
             }
 
             outputResults.clear();
@@ -61,9 +59,7 @@ public class StorageComputeEngAPIImplementation implements StorageComputeEngAPI 
             };
 
         } catch (IOException exception) {
-            throw new RuntimeException(
-                    "Failed to read input file: " + inputPath,
-                    exception);
+            throw new RuntimeException("Failed to read input file: " + inputPath, exception);
         }
     }
 
@@ -77,13 +73,9 @@ public class StorageComputeEngAPIImplementation implements StorageComputeEngAPI 
         String output = String.join(",", outputResults);
 
         try {
-            Files.writeString(
-                    Path.of(destination.getPath()),
-                    output);
+            Files.writeString(Path.of(destination.getPath()), output);
         } catch (IOException exception) {
-            throw new RuntimeException(
-                    "Failed to write output file",
-                    exception);
+            throw new RuntimeException("Failed to write output file", exception);
         }
     }
 }
