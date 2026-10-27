@@ -1,6 +1,5 @@
 package project;
 
-
 import user.Destination;
 import user.Source;
 import user.UserComputeEngAPI;
@@ -37,8 +36,8 @@ public class TestUserComputeEngAPI {
         UserComputeEngAPI testAPI = new WorkHandler(mockStoreAPI, mockCompAPI);
 
         UserComputeRequest mockRequest = Mockito.mock(UserComputeRequest.class);
-        
-     // Provide a valid source and destination.
+
+        // Provide a valid source and destination.
         Source source = Mockito.mock(Source.class);
         when(source.getPath()).thenReturn("in.txt");
         Destination destination = Mockito.mock(Destination.class);
@@ -52,16 +51,14 @@ public class TestUserComputeEngAPI {
         // Configure the storage API to return input data.
         IntData mockData = Mockito.mock(IntData.class);
 
-        when(mockStoreAPI.read(any(StoreRequest.class)))
-                .thenReturn(mockData);
+        when(mockStoreAPI.read(any(StoreRequest.class))).thenReturn(mockData);
 
         when(mockData.getInts()).thenReturn(Arrays.asList(25));
 
         when(mockData.getIntAt(Mockito.anyInt())).thenReturn(25);
 
         // Configure the computation API to return true.
-        ComputationResult computationResult =
-                Mockito.mock(ComputationResult.class);
+        ComputationResult computationResult = Mockito.mock(ComputationResult.class);
 
         when(computationResult.getGreatestPrimeFactor()).thenReturn(5);
 
@@ -78,9 +75,7 @@ public class TestUserComputeEngAPI {
         assertEquals(response.getGPF(), 5);
 
         verify(mockStoreAPI).read(any(StoreRequest.class));
-
         verify(mockCompAPI).computeResult(any(ComputationRequest.class));
-
         verify(mockStoreAPI).write(any(StoreRequest.class), eq(computationResult));
     }
 }

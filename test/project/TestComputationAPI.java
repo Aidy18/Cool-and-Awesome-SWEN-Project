@@ -37,7 +37,25 @@ public class TestComputationAPI {
 
         // Test the computation with the mocked object
         ComputationAPIImplementation testAPI = new ComputationAPIImplementation(storageAPI);
-        System.out.println(testAPI.computeResult(mockRequest).getGreatestPrimeFactor());
+        
         Assertions.assertEquals(testAPI.computeResult(mockRequest).getGreatestPrimeFactor(), 5);
+    }
+    
+    // Additional test for already prime numbers 
+    @Test
+    public void testPrime() throws Exception {
+        IntData mockIntData = Mockito.mock(IntData.class);
+        when(mockIntData.getInts()).thenReturn(new ArrayList<>(Arrays.asList(7)));
+        when(mockIntData.getIntAt(anyInt())).thenReturn(7);
+
+        ComputationRequest mockRequest = Mockito.mock(ComputationRequest.class);
+        when(mockRequest.getData()).thenReturn(mockIntData);
+        when(mockRequest.getDataValue()).thenReturn(7);
+        
+        StorageComputeEngAPI storageAPI = Mockito.mock(StorageComputeEngAPI.class);
+        
+        ComputationAPIImplementation testAPI = new ComputationAPIImplementation(storageAPI);
+        
+        Assertions.assertEquals(testAPI.computeResult(mockRequest).getGreatestPrimeFactor(), 7);
     }
 }
