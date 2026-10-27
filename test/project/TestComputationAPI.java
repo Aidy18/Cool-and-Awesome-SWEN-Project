@@ -1,6 +1,5 @@
 package project;
 
-
 import compute.eng.ComputationAPIImplementation;
 import compute.eng.ComputationRequest;
 import datastore.StorageComputeEngAPI;
@@ -32,16 +31,16 @@ public class TestComputationAPI {
         ComputationRequest mockRequest = Mockito.mock(ComputationRequest.class);
         when(mockRequest.getData()).thenReturn(mockIntData);
         when(mockRequest.getDataValue()).thenReturn(25);
-        
+
         StorageComputeEngAPI storageAPI = Mockito.mock(StorageComputeEngAPI.class);
 
         // Test the computation with the mocked object
         ComputationAPIImplementation testAPI = new ComputationAPIImplementation(storageAPI);
-        
+
         Assertions.assertEquals(testAPI.computeResult(mockRequest).getGreatestPrimeFactor(), 5);
     }
-    
-    // Additional test for already prime numbers 
+
+    // Additional test for already prime numbers
     @Test
     public void testPrime() throws Exception {
         IntData mockIntData = Mockito.mock(IntData.class);
@@ -51,11 +50,11 @@ public class TestComputationAPI {
         ComputationRequest mockRequest = Mockito.mock(ComputationRequest.class);
         when(mockRequest.getData()).thenReturn(mockIntData);
         when(mockRequest.getDataValue()).thenReturn(7);
-        
+
         StorageComputeEngAPI storageAPI = Mockito.mock(StorageComputeEngAPI.class);
-        
+
         ComputationAPIImplementation testAPI = new ComputationAPIImplementation(storageAPI);
-        
+
         Assertions.assertEquals(testAPI.computeResult(mockRequest).getGreatestPrimeFactor(), 7);
     }
 }

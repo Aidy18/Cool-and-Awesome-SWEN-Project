@@ -1,6 +1,5 @@
 package project;
 
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,8 +16,8 @@ public class InMemoryDataStore implements StorageComputeEngAPI {
         // Test to read some input
         TestSource source = (TestSource) request.getSource();
         List<Integer> input = source.getInput();
-        
-        if(input == null || input.isEmpty()) {
+
+        if (input == null || input.isEmpty()) {
             throw new IllegalArgumentException("Input not found");
         }
 
@@ -39,13 +38,12 @@ public class InMemoryDataStore implements StorageComputeEngAPI {
     public void write(StoreRequest request, ComputationResult result) {
         // Quick test to write some output
         TestDestination destination = (TestDestination) request.getDestination();
-        
+
         // Verify edge cases
         String finalValue;
-        if(result.getGreatestPrimeFactor() < 2) {
+        if (result.getGreatestPrimeFactor() < 2) {
             finalValue = "none";
-        }
-        else {
+        } else {
             finalValue = Integer.toString(result.getGreatestPrimeFactor());
         }
         destination.getOutput().add(finalValue);

@@ -5,11 +5,11 @@ import datastore.StorageComputeEngAPI;
 
 public class ComputationAPIImplementation implements ComputationAPI {
     private final StorageComputeEngAPI storageAPI;
-    
+
     public ComputationAPIImplementation(StorageComputeEngAPI storageAPI) {
         this.storageAPI = storageAPI;
     }
-    
+
     public ComputationAPIImplementation() {
         this.storageAPI = null;
     }
@@ -28,12 +28,12 @@ public class ComputationAPIImplementation implements ComputationAPI {
 
     private Integer getGreatestPrimeFactor(Integer n) {
         Integer largestPrime = -1;
-        
+
         // No prime factors exist for 0 and 1
         if (n < 2) {
-           return largestPrime; 
+            return largestPrime;
         }
-        
+
         // Any even factors are taken out
         while (n % 2 == 0) {
             largestPrime = 2;

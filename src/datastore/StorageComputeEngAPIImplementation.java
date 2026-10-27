@@ -18,7 +18,7 @@ public class StorageComputeEngAPIImplementation implements StorageComputeEngAPI 
     public StorageComputeEngAPIImplementation(ComputationAPI compAPI) {
         this.compAPI = compAPI;
     }
-    
+
     public StorageComputeEngAPIImplementation() {
         this.compAPI = null;
     }
@@ -73,10 +73,9 @@ public class StorageComputeEngAPIImplementation implements StorageComputeEngAPI 
     public void write(StoreRequest storeRequest, ComputationResult result) {
         Destination destination = storeRequest.getDestination();
         String parsedResult;
-        if(result.getGreatestPrimeFactor() < 2) {
+        if (result.getGreatestPrimeFactor() < 2) {
             parsedResult = "none";
-        }
-        else {
+        } else {
             parsedResult = Integer.toString(result.getGreatestPrimeFactor());
         }
         outputResults.add(parsedResult);

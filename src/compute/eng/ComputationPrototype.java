@@ -24,6 +24,7 @@ public class ComputationPrototype {
                     }
                 };
             }
+
             @Override
             public Integer getDataValue() {
                 return 0;
