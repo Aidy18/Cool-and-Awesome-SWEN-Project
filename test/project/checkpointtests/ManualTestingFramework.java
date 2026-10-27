@@ -52,7 +52,7 @@ public class ManualTestingFramework {
                 return false;
             }
         };
-        
+
         UserComputeResponse response = userAPI.compute(request);
         System.out.println("Result: " + response.getGPF());
         System.out.println("Output written to: " + OUTPUT);
