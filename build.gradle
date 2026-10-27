@@ -29,11 +29,4 @@ dependencies {
 
 test {
     useJUnitPlatform()
-    filter {
-    	includeTestsMatching "*Checkpoint*"
-    	includeTestsMatching "TestComputationAPI*"
-    	includeTestsMatching "TestUserComputeEngAPI*"
-    	includeTestsMatching "TestStorageCompute*"
-    	includeTestsMatching "ComputeEngineIntegrationTest*"
-    }
 }
