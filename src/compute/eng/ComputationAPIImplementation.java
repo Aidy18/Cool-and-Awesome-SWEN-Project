@@ -1,5 +1,7 @@
 package compute.eng;
 
+import java.util.Objects;
+
 import datastore.IntData;
 import datastore.StorageComputeEngAPI;
 
@@ -16,7 +18,13 @@ public class ComputationAPIImplementation implements ComputationAPI {
 
     @Override
     public ComputationResult computeResult(ComputationRequest computeRequest) {
-        Integer n = computeRequest.getDataValue();
+        Objects.requireNonNull(computeRequest, "Computation request must not be null");
+        Integer n = Objects.requireNonNull(computeRequest.getDataValue(), "Input data cannot be null");
+        
+        if (n < 0) {
+           throw new IllegalArgumentException("Input cannot be negative"); 
+        }
+        
         Integer result = getGreatestPrimeFactor(n);
         return new ComputationResult() {
             @Override
@@ -28,7 +36,7 @@ public class ComputationAPIImplementation implements ComputationAPI {
 
     private Integer getGreatestPrimeFactor(Integer n) {
         Integer largestPrime = -1;
-
+        
         // No prime factors exist for 0 and 1
         if (n < 2) {
             return largestPrime;
