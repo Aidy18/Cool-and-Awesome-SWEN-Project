@@ -1,6 +1,5 @@
 package project;
 
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -25,8 +24,8 @@ public class ComputeEngineIntegrationTest {
         List<String> output = new ArrayList<>();
 
         // Instantiate the live implemented APIs
-        DataStoreIntegrationTest storageAPI = new DataStoreIntegrationTest();
-        ComputationAPI computationAPI = new ComputationAPIImplementation();
+        InMemoryDataStore storageAPI = new InMemoryDataStore();
+        ComputationAPI computationAPI = new ComputationAPIImplementation(storageAPI);
         UserComputeEngAPI userAPI = new WorkHandler(storageAPI, computationAPI);
 
         // Define source/destination to extract from the input/output lists

@@ -1,6 +1,5 @@
 package project;
 
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -10,27 +9,27 @@ import datastore.StoreRequest;
 import compute.eng.ComputationResult;
 import datastore.IntData;
 
-public class DataStoreIntegrationTest implements StorageComputeEngAPI {
+public class InMemoryDataStore implements StorageComputeEngAPI {
 
     @Override
     public IntData read(StoreRequest request) {
         // Test to read some input
         TestSource source = (TestSource) request.getSource();
         List<Integer> input = source.getInput();
-        for (Integer num : input) {
-            System.out.print(num + ", ");
+
+        if (input == null || input.isEmpty()) {
+            throw new IllegalArgumentException("Input not found");
         }
-        System.out.println();
 
         return new IntData() {
             @Override
             public List<Integer> getInts() {
-                return new ArrayList<Integer>(Arrays.asList(0));
+                return new ArrayList<Integer>(input);
             }
 
             @Override
             public Integer getIntAt(int index) {
-                return getInts().get(0);
+                return input.get(index);
             }
         };
     }
@@ -40,6 +39,13 @@ public class DataStoreIntegrationTest implements StorageComputeEngAPI {
         // Quick test to write some output
         TestDestination destination = (TestDestination) request.getDestination();
 
-        destination.getOutput().add(Integer.toString(result.getGPF()));
+        // Verify edge cases
+        String finalValue;
+        if (result.getGreatestPrimeFactor() < 2) {
+            finalValue = "none";
+        } else {
+            finalValue = Integer.toString(result.getGreatestPrimeFactor());
+        }
+        destination.getOutput().add(finalValue);
     }
 }

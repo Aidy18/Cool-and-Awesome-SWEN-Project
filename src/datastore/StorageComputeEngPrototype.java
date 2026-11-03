@@ -44,7 +44,7 @@ public class StorageComputeEngPrototype {
         ComputationResult result = new ComputationResult() {
 
             @Override
-            public Integer getGPF() {
+            public Integer getGreatestPrimeFactor() {
                 return 1;
             }
         };
