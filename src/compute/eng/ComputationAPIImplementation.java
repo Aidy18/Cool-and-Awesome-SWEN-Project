@@ -20,11 +20,12 @@ public class ComputationAPIImplementation implements ComputationAPI {
     public ComputationResult computeResult(ComputationRequest computeRequest) {
         Objects.requireNonNull(computeRequest, "Computation request must not be null");
         Integer n = Objects.requireNonNull(computeRequest.getDataValue(), "Input data cannot be null");
-        
+
+        // Reject negative inputs
         if (n < 0) {
-           throw new IllegalArgumentException("Input cannot be negative"); 
+            throw new IllegalArgumentException("Input cannot be negative");
         }
-        
+
         Integer result = getGreatestPrimeFactor(n);
         return new ComputationResult() {
             @Override
@@ -36,7 +37,7 @@ public class ComputationAPIImplementation implements ComputationAPI {
 
     private Integer getGreatestPrimeFactor(Integer n) {
         Integer largestPrime = -1;
-        
+
         // No prime factors exist for 0 and 1
         if (n < 2) {
             return largestPrime;
