@@ -10,7 +10,7 @@ public class UserComputeResponse {
         this.message = message;
         this.success = true;
     }
-    
+
     // Failed computation
     public UserComputeResponse(String message) {
         this.gpf = null;
@@ -25,7 +25,7 @@ public class UserComputeResponse {
     public String getMessage() {
         return message;
     }
-    
+
     public boolean isSuccess() {
         return success;
     }
