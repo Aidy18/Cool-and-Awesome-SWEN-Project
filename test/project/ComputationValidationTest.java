@@ -19,7 +19,7 @@ public class ComputationValidationTest {
         ComputationAPIImplementation testComputation = new ComputationAPIImplementation();
         assertThrows(NullPointerException.class, () -> testComputation.computeResult(null));
     }
-    
+
     @Test
     public void testNegative() {
         ComputationAPIImplementation testComputation = new ComputationAPIImplementation();
