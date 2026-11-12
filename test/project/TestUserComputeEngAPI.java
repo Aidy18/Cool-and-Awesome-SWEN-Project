@@ -10,6 +10,7 @@ import compute.eng.ComputationAPI;
 import compute.eng.ComputationRequest;
 import compute.eng.ComputationResult;
 import datastore.IntData;
+import datastore.ReadResponse;
 import datastore.StorageComputeEngAPI;
 import datastore.StoreRequest;
 
@@ -51,11 +52,10 @@ public class TestUserComputeEngAPI {
         // Configure the storage API to return input data.
         IntData mockData = Mockito.mock(IntData.class);
 
-        when(mockStoreAPI.read(any(StoreRequest.class))).thenReturn(mockData);
-
         when(mockData.getInts()).thenReturn(Arrays.asList(25));
-
         when(mockData.getIntAt(Mockito.anyInt())).thenReturn(25);
+
+        when(mockStoreAPI.read(any(StoreRequest.class))).thenReturn(mockData);
 
         // Configure the computation API to return true.
         ComputationResult computationResult = Mockito.mock(ComputationResult.class);

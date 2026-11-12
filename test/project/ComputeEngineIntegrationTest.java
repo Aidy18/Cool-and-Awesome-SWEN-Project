@@ -47,7 +47,7 @@ public class ComputeEngineIntegrationTest {
 
             @Override
             public String getDelimiter() {
-                return null;
+                return ",";
             }
 
             @Override
