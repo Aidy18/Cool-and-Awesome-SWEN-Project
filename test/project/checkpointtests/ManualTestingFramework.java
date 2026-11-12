@@ -54,7 +54,11 @@ public class ManualTestingFramework {
         };
 
         UserComputeResponse response = userAPI.compute(request);
-        System.out.println("Result: " + response.getGPF());
-        System.out.println("Output written to: " + OUTPUT);
+        if (response.isSuccess()) {
+            System.out.println("Result: " + response.getGPF());
+            System.out.println("Output written to: " + OUTPUT);
+        } else {
+            System.out.println("Computation failed: " + response.getMessage());
+        }
     }
 }

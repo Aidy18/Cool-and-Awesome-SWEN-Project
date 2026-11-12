@@ -1,5 +1,7 @@
 package compute.eng;
 
+import java.util.Objects;
+
 import datastore.IntData;
 import datastore.StorageComputeEngAPI;
 
@@ -16,7 +18,14 @@ public class ComputationAPIImplementation implements ComputationAPI {
 
     @Override
     public ComputationResult computeResult(ComputationRequest computeRequest) {
-        Integer n = computeRequest.getDataValue();
+        Objects.requireNonNull(computeRequest, "Computation request must not be null");
+        Integer n = Objects.requireNonNull(computeRequest.getDataValue(), "Input data cannot be null");
+
+        // Reject negative inputs
+        if (n < 0) {
+            throw new IllegalArgumentException("Input cannot be negative");
+        }
+
         Integer result = getGreatestPrimeFactor(n);
         return new ComputationResult() {
             @Override

@@ -1,5 +1,8 @@
 package user;
 
+import java.util.List;
+import java.util.Objects;
+
 import compute.eng.ComputationAPI;
 import compute.eng.ComputationRequest;
 import compute.eng.ComputationResult;
@@ -13,66 +16,75 @@ public class WorkHandler implements UserComputeEngAPI {
     private final ComputationAPI computationAPI;
 
     public WorkHandler(StorageComputeEngAPI storeAPI, ComputationAPI computationAPI) {
-        this.storeAPI = storeAPI;
-        this.computationAPI = computationAPI;
+        this.storeAPI = Objects.requireNonNull(storeAPI, "StorageAPI cannot be null");
+        this.computationAPI = Objects.requireNonNull(computationAPI, "ComputationAPI cannot be null");
     }
 
-    // 1. Take in the user request & validate
     @Override
     public UserComputeResponse compute(UserComputeRequest request) {
-        /*
-         * commented out for testing purposes if (request == null) { throw new
-         * IllegalArgumentException("Request cannot be null"); } if (request.getSource()
-         * == null) { throw new
-         * IllegalArgumentException("Please provide a valid source"); } if
-         * (request.getDestination() == null) { throw new
-         * IllegalArgumentException("Please provide a valid destination"); }
-         */
-        // 2. Send a storage request to store from source to destination
-        StoreRequest storeRequest = new StoreRequest() {
-            @Override
-            public Source getSource() {
-                return request.getSource();
-            }
+        try {
+            // Validate the request
+            Objects.requireNonNull(request, "Request cannot be null");
+            Source source = Objects.requireNonNull(request.getSource(), "Source cannot be null");
+            Destination destination = Objects.requireNonNull(request.getDestination(), "Destination cannot be null");
 
-            @Override
-            public Destination getDestination() {
-                return request.getDestination();
-            }
-        };
-
-        // 3. Read data from specified source & store in a data container
-        IntData data = storeAPI.read(storeRequest);
-
-        if (data == null) {
-            throw new IllegalArgumentException("Data not found");
-        }
-
-        Integer lastResult = -1;
-
-        for (Integer val : data.getInts()) {
-            // 4. Make a request for each data value
-            ComputationRequest computationRequest = new ComputationRequest() {
+            // Send a storage request to store from source to destination
+            StoreRequest storeRequest = new StoreRequest() {
                 @Override
-                public IntData getData() {
-                    return data;
+                public Source getSource() {
+                    return source;
                 }
 
                 @Override
-                public Integer getDataValue() {
-                    return val;
+                public Destination getDestination() {
+                    return destination;
                 }
             };
-            // 5. Do the computation(s)
-            ComputationResult result = computationAPI.computeResult(computationRequest);
 
-            // 6. Write the result out to the destination
-            storeAPI.write(storeRequest, result);
-            lastResult = result.getGreatestPrimeFactor();
+            // Read data from specified source & store in a data container
+            IntData data = Objects.requireNonNull(storeAPI.read(storeRequest), "StorageAPI read null data");
+            List<Integer> intValues = Objects.requireNonNull(data.getInts(), "Input values cannot be null");
+
+            if (intValues.isEmpty()) {
+                throw new IllegalArgumentException("Input data contains no values");
+            }
+
+            Integer lastResult = -1;
+
+            for (Integer val : intValues) {
+                Objects.requireNonNull(val, "Input value cannot be null");
+
+                // Make a request for each data value
+                ComputationRequest computationRequest = new ComputationRequest() {
+                    @Override
+                    public IntData getData() {
+                        return data;
+                    }
+
+                    @Override
+                    public Integer getDataValue() {
+                        return val;
+                    }
+                };
+                // Do the computation(s)
+                ComputationResult result = Objects.requireNonNull(computationAPI.computeResult(computationRequest),
+                        "ComputationAPI returned null");
+
+                // Write the result out to the destination
+                storeAPI.write(storeRequest, result);
+                lastResult = result.getGreatestPrimeFactor();
+            }
+
+            // Return a response to the user indicating the last computed result
+            String msg = "Computations successful";
+            return new UserComputeResponse(lastResult, msg);
+
+        } catch (Exception e) {
+            String errorMsg = e.getMessage();
+            if (errorMsg == null || errorMsg.isBlank()) {
+                errorMsg = "An unexpected error occurred";
+            }
+            return new UserComputeResponse(e.getClass().getSimpleName() + ": " + errorMsg);
         }
-
-        // 7. Return a response to the user indicating the last computed result
-        String msg = "";
-        return new UserComputeResponse(lastResult, msg);
     }
 }
