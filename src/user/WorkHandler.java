@@ -21,7 +21,7 @@ public class WorkHandler implements UserComputeEngAPI {
     }
 
     @Override
-    public UserComputeResponse compute(UserComputeRequest request) {
+    public synchronized UserComputeResponse compute(UserComputeRequest request) {
         try {
             // Validate the request
             Objects.requireNonNull(request, "Request cannot be null");
@@ -40,6 +40,8 @@ public class WorkHandler implements UserComputeEngAPI {
                     return destination;
                 }
             };
+            
+            Object lock = new Object();
 
             // Read data from specified source & store in a data container
             IntData data = Objects.requireNonNull(storeAPI.read(storeRequest), "StorageAPI read null data");
@@ -71,8 +73,10 @@ public class WorkHandler implements UserComputeEngAPI {
                         "ComputationAPI returned null");
 
                 // Write the result out to the destination
-                storeAPI.write(storeRequest, result);
-                lastResult = result.getGreatestPrimeFactor();
+                synchronized (lock){
+                    storeAPI.write(storeRequest, result);
+                    lastResult = result.getGreatestPrimeFactor();
+                }
             }
 
             // Return a response to the user indicating the last computed result
