@@ -15,7 +15,8 @@ import user.Source;
 
 public class StorageComputeEngAPIImplementation implements StorageComputeEngAPI {
     private final ComputationAPI compAPI;
-    // private final List<String> outputResults = new ArrayList<>();
+
+    // thread-safe implementation for multiple concurrent threads
     private final ConcurrentHashMap<Path, List<String>> outputResults = new ConcurrentHashMap<>();
 
     public StorageComputeEngAPIImplementation(ComputationAPI compAPI) {
@@ -47,51 +48,47 @@ public class StorageComputeEngAPIImplementation implements StorageComputeEngAPI 
                 throw new IllegalArgumentException("Input file is not readable");
             }
 
-            try {
-                List<String> lines = Files.readAllLines(inputPath);
-                List<Integer> numbers = new ArrayList<>();
+            List<String> lines = Files.readAllLines(inputPath);
+            List<Integer> numbers = new ArrayList<>();
 
-                for (String line : lines) {
-                    String trimmed = line.trim();
+            for (String line : lines) {
+                String trimmed = line.trim();
 
-                    if (!trimmed.isEmpty()) {
-                        // Handling the default delimiter only for now
-                        String[] values = trimmed.split(",");
+                if (!trimmed.isEmpty()) {
+                    // Handling the default delimiter only for now
+                    String[] values = trimmed.split(",");
 
-                        for (String value : values) {
-                            String trimmedValue = value.trim();
+                    for (String value : values) {
+                        String trimmedValue = value.trim();
 
-                            if (trimmedValue.isEmpty()) {
-                                throw new IllegalArgumentException("Input file contains an empty value");
-                            }
-                            try {
-                                numbers.add(Integer.parseInt(trimmedValue));
-                            } catch (NumberFormatException e) {
-                                throw new IllegalArgumentException("Invalid data in input file: " + trimmedValue, e);
-                            }
+                        if (trimmedValue.isEmpty()) {
+                            throw new IllegalArgumentException("Input file contains an empty value");
+                        }
+                        try {
+                            numbers.add(Integer.parseInt(trimmedValue));
+                        } catch (NumberFormatException e) {
+                            throw new IllegalArgumentException("Invalid data in input file: " + trimmedValue, e);
                         }
                     }
                 }
+            }
 
-                if (numbers.isEmpty()) {
-                    throw new IllegalArgumentException("Input file contains no integers");
+            if (numbers.isEmpty()) {
+                throw new IllegalArgumentException("Input file contains no integers");
+            }
+
+            return new IntData() {
+                @Override
+                public List<Integer> getInts() {
+                    return numbers;
                 }
 
-                return new IntData() {
-                    @Override
-                    public List<Integer> getInts() {
-                        return numbers;
-                    }
+                @Override
+                public Integer getIntAt(int index) {
+                    return numbers.get(index);
+                }
+            };
 
-                    @Override
-                    public Integer getIntAt(int index) {
-                        return numbers.get(index);
-                    }
-                };
-
-            } catch (IOException exception) {
-                throw new RuntimeException("Failed to read input file: " + inputPath, exception);
-            }
         } catch (Exception e) {
             // a temporary solution for now
             System.out.println(e.getClass().getSimpleName() + ": " + e.getMessage());
@@ -123,8 +120,11 @@ public class StorageComputeEngAPIImplementation implements StorageComputeEngAPI 
             if (parent != null && !Files.isDirectory(parent)) {
                 throw new IllegalArgumentException("Output directory does not exist: " + parent);
             }
-
-            List<String> results = outputResults.computeIfAbsent(outputPath, ignored -> new ArrayList<>());
+            
+            // get the results for this running process
+            List<String> results = outputResults.computeIfAbsent(outputPath, ignore -> new ArrayList<>());
+            
+            // Coordinate the writes to this specific destination
             synchronized (results) {
                 List<String> parsedResults = new ArrayList<>(results);
                 String parsedResult;
@@ -139,13 +139,14 @@ public class StorageComputeEngAPIImplementation implements StorageComputeEngAPI 
 
                 String output = String.join(",", parsedResults);
                 Files.writeString(outputPath, output);
-
+                
+                // If the write succeeded, we can update
                 results.clear();
                 results.addAll(parsedResults);
-                return true;
             }
-
-            // Write all to one comma-separated line
+            return true;
+            
+        // Write all to one comma-separated line
         } catch (Exception e) {
             System.out.println(e.getClass().getSimpleName() + ": " + e.getMessage());
             return false;

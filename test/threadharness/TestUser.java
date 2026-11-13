@@ -18,6 +18,8 @@ public class TestUser {
     }
 
     public void run(String outputPath) {
+        // note: delimiter was changed to reflect 
+        // my file format of choice
         char delimiter = ',';
         String inputPath = "test" + File.separatorChar + "threadharness" + File.separatorChar + "testInputFile.test";
 
