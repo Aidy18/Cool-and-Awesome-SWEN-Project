@@ -26,113 +26,124 @@ public class StorageComputeEngAPIImplementation implements StorageComputeEngAPI 
 
     @Override
     public IntData read(StoreRequest storeRequest) {
-        Objects.requireNonNull(storeRequest, "Storage request cannot be null");
-        Source source = Objects.requireNonNull(storeRequest.getSource(), "Data source cannot be null");
-        String inputPathString = Objects.requireNonNull(source.getPath(), "Input path cannot be null");
-
-        if (inputPathString.isBlank()) {
-            throw new IllegalArgumentException("Source path cannot be blank");
-        }
-
-        Path inputPath = Path.of(inputPathString);
-
-        if (!Files.isRegularFile(inputPath)) {
-            throw new IllegalArgumentException("Input file is not regular");
-        }
-
-        if (!Files.isReadable(inputPath)) {
-            throw new IllegalArgumentException("Input file is not readable");
-        }
-
         try {
-            List<String> lines = Files.readAllLines(inputPath);
-            List<Integer> numbers = new ArrayList<>();
+            Objects.requireNonNull(storeRequest, "Storage request cannot be null");
+            Source source = Objects.requireNonNull(storeRequest.getSource(), "Data source cannot be null");
+            String inputPathString = Objects.requireNonNull(source.getPath(), "Input path cannot be null");
 
-            for (String line : lines) {
-                String trimmed = line.trim();
+            if (inputPathString.isBlank()) {
+                throw new IllegalArgumentException("Source path cannot be blank");
+            }
 
-                if (!trimmed.isEmpty()) {
-                    // Handling the default delimiter only for now
-                    String[] values = trimmed.split(",");
+            Path inputPath = Path.of(inputPathString);
 
-                    for (String value : values) {
-                        String trimmedValue = value.trim();
+            if (!Files.isRegularFile(inputPath)) {
+                throw new IllegalArgumentException("Input file is not regular");
+            }
 
-                        if (trimmedValue.isEmpty()) {
-                            throw new IllegalArgumentException("Input file contains an empty value");
-                        }
-                        try {
-                            numbers.add(Integer.parseInt(trimmedValue));
-                        } catch (NumberFormatException e) {
-                            throw new IllegalArgumentException("Invalid data in input file: " + trimmedValue, e);
+            if (!Files.isReadable(inputPath)) {
+                throw new IllegalArgumentException("Input file is not readable");
+            }
+
+            try {
+                List<String> lines = Files.readAllLines(inputPath);
+                List<Integer> numbers = new ArrayList<>();
+
+                for (String line : lines) {
+                    String trimmed = line.trim();
+
+                    if (!trimmed.isEmpty()) {
+                        // Handling the default delimiter only for now
+                        String[] values = trimmed.split(",");
+
+                        for (String value : values) {
+                            String trimmedValue = value.trim();
+
+                            if (trimmedValue.isEmpty()) {
+                                throw new IllegalArgumentException("Input file contains an empty value");
+                            }
+                            try {
+                                numbers.add(Integer.parseInt(trimmedValue));
+                            } catch (NumberFormatException e) {
+                                throw new IllegalArgumentException("Invalid data in input file: " + trimmedValue, e);
+                            }
                         }
                     }
                 }
-            }
 
-            if (numbers.isEmpty()) {
-                throw new IllegalArgumentException("Input file contains no integers");
-            }
-
-            // Flush after every run
-            outputResults.clear();
-
-            return new IntData() {
-                @Override
-                public List<Integer> getInts() {
-                    return numbers;
+                if (numbers.isEmpty()) {
+                    throw new IllegalArgumentException("Input file contains no integers");
                 }
+                
+                outputResults.clear();
 
-                @Override
-                public Integer getIntAt(int index) {
-                    return numbers.get(index);
-                }
-            };
+                return new IntData() {
+                    @Override
+                    public List<Integer> getInts() {
+                        return numbers;
+                    }
 
-        } catch (IOException exception) {
-            throw new RuntimeException("Failed to read input file: " + inputPath, exception);
+                    @Override
+                    public Integer getIntAt(int index) {
+                        return numbers.get(index);
+                    }
+                };
+
+            } catch (IOException exception) {
+                throw new RuntimeException("Failed to read input file: " + inputPath, exception);
+            }
+        } catch (Exception e) {
+            // a temporary solution for now
+            System.out.println(e.getClass().getSimpleName() + ": " + e.getMessage());
+            return null;
         }
     }
 
     @Override
-    public void write(StoreRequest storeRequest, ComputationResult result) {
-        Objects.requireNonNull(storeRequest, "Storage request cannot be null");
-        Objects.requireNonNull(result, "Computation result cannot be null");
-
-        Destination destination = Objects.requireNonNull(storeRequest.getDestination(),
-                "Data destination cannot be null");
-        String destinationPathString = Objects.requireNonNull(destination.getPath(), "Output file path cannot be null");
-
-        if (destinationPathString.isBlank()) {
-            throw new IllegalArgumentException("Output file path cannot be blank");
-        }
-
-        Path outputPath = Path.of(destinationPathString);
-
-        // Check the parent directory if there is one
-        Path parent = outputPath.toAbsolutePath().getParent();
-
-        // Validate the parent exists, as the output file may not yet exist
-        if (parent != null && !Files.isDirectory(parent)) {
-            throw new IllegalArgumentException("Output directory does not exist: " + parent);
-        }
-
-        String parsedResult;
-
-        if (result.getGreatestPrimeFactor() < 2) {
-            parsedResult = "none";
-        } else {
-            parsedResult = Integer.toString(result.getGreatestPrimeFactor());
-        }
-
-        outputResults.add(parsedResult);
-
-        // Write all to one comma-separated line
-        String output = String.join(",", outputResults);
+    public boolean write(StoreRequest storeRequest, ComputationResult result) {
         try {
-            Files.writeString(outputPath, output);
-        } catch (IOException exception) {
-            throw new RuntimeException("Failed to write output file: " + outputPath, exception);
+            Objects.requireNonNull(storeRequest, "Storage request cannot be null");
+            Objects.requireNonNull(result, "Computation result cannot be null");
+
+            Destination destination = Objects.requireNonNull(storeRequest.getDestination(),
+                    "Data destination cannot be null");
+            String destinationPathString = Objects.requireNonNull(destination.getPath(), "Output file path cannot be null");
+
+            if (destinationPathString.isBlank()) {
+                throw new IllegalArgumentException("Output file path cannot be blank");
+            }
+
+            Path outputPath = Path.of(destinationPathString);
+
+            // Check the parent directory if there is one
+            Path parent = outputPath.toAbsolutePath().getParent();
+
+            // Validate the parent exists, as the output file may not yet exist
+            if (parent != null && !Files.isDirectory(parent)) {
+                throw new IllegalArgumentException("Output directory does not exist: " + parent);
+            }
+
+            String parsedResult;
+
+            if (result.getGreatestPrimeFactor() < 2) {
+                parsedResult = "none";
+            } else {
+                parsedResult = Integer.toString(result.getGreatestPrimeFactor());
+            }
+
+            outputResults.add(parsedResult);
+
+            // Write all to one comma-separated line
+            String output = String.join(",", outputResults);
+            try {
+                Files.writeString(outputPath, output);
+            } catch (IOException exception) {
+                throw new RuntimeException("Failed to write output file: " + outputPath, exception);
+            }
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getClass().getSimpleName() + ": " + e.getMessage());
+            return false;
         }
     }
 }

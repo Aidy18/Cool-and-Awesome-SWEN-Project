@@ -40,8 +40,6 @@ public class WorkHandler implements UserComputeEngAPI {
                     return destination;
                 }
             };
-            
-            Object lock = new Object();
 
             // Read data from specified source & store in a data container
             IntData data = Objects.requireNonNull(storeAPI.read(storeRequest), "StorageAPI read null data");
@@ -73,10 +71,9 @@ public class WorkHandler implements UserComputeEngAPI {
                         "ComputationAPI returned null");
 
                 // Write the result out to the destination
-                synchronized (lock){
-                    storeAPI.write(storeRequest, result);
-                    lastResult = result.getGreatestPrimeFactor();
-                }
+                storeAPI.write(storeRequest, result);
+                
+                lastResult = result.getGreatestPrimeFactor();
             }
 
             // Return a response to the user indicating the last computed result

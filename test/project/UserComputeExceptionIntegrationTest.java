@@ -27,7 +27,8 @@ public class UserComputeExceptionIntegrationTest {
             }
 
             @Override
-            public void write(StoreRequest request, ComputationResult result) {
+            public boolean write(StoreRequest request, ComputationResult result) {
+                return true;
                 // We don't care about writing for this test
             }
         };
