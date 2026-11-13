@@ -21,7 +21,7 @@ public class WorkHandler implements UserComputeEngAPI {
     }
 
     @Override
-    public synchronized UserComputeResponse compute(UserComputeRequest request) {
+    public UserComputeResponse compute(UserComputeRequest request) {
         try {
             // Validate the request
             Objects.requireNonNull(request, "Request cannot be null");

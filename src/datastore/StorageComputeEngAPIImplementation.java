@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.ConcurrentHashMap;
 
 import compute.eng.ComputationAPI;
 import compute.eng.ComputationResult;
@@ -14,7 +15,8 @@ import user.Source;
 
 public class StorageComputeEngAPIImplementation implements StorageComputeEngAPI {
     private final ComputationAPI compAPI;
-    private final List<String> outputResults = new ArrayList<>();
+    // private final List<String> outputResults = new ArrayList<>();
+    private final ConcurrentHashMap<Path, List<String>> outputResults = new ConcurrentHashMap<>();
 
     public StorageComputeEngAPIImplementation(ComputationAPI compAPI) {
         this.compAPI = compAPI;
@@ -74,8 +76,6 @@ public class StorageComputeEngAPIImplementation implements StorageComputeEngAPI 
                 if (numbers.isEmpty()) {
                     throw new IllegalArgumentException("Input file contains no integers");
                 }
-                
-                outputResults.clear();
 
                 return new IntData() {
                     @Override
@@ -107,7 +107,8 @@ public class StorageComputeEngAPIImplementation implements StorageComputeEngAPI 
 
             Destination destination = Objects.requireNonNull(storeRequest.getDestination(),
                     "Data destination cannot be null");
-            String destinationPathString = Objects.requireNonNull(destination.getPath(), "Output file path cannot be null");
+            String destinationPathString = Objects.requireNonNull(destination.getPath(),
+                    "Output file path cannot be null");
 
             if (destinationPathString.isBlank()) {
                 throw new IllegalArgumentException("Output file path cannot be blank");
@@ -123,24 +124,28 @@ public class StorageComputeEngAPIImplementation implements StorageComputeEngAPI 
                 throw new IllegalArgumentException("Output directory does not exist: " + parent);
             }
 
-            String parsedResult;
+            List<String> results = outputResults.computeIfAbsent(outputPath, ignored -> new ArrayList<>());
+            synchronized (results) {
+                List<String> parsedResults = new ArrayList<>(results);
+                String parsedResult;
 
-            if (result.getGreatestPrimeFactor() < 2) {
-                parsedResult = "none";
-            } else {
-                parsedResult = Integer.toString(result.getGreatestPrimeFactor());
+                if (result.getGreatestPrimeFactor() < 2) {
+                    parsedResult = "none";
+                } else {
+                    parsedResult = Integer.toString(result.getGreatestPrimeFactor());
+                }
+
+                parsedResults.add(parsedResult);
+
+                String output = String.join(",", parsedResults);
+                Files.writeString(outputPath, output);
+
+                results.clear();
+                results.addAll(parsedResults);
+                return true;
             }
-
-            outputResults.add(parsedResult);
 
             // Write all to one comma-separated line
-            String output = String.join(",", outputResults);
-            try {
-                Files.writeString(outputPath, output);
-            } catch (IOException exception) {
-                throw new RuntimeException("Failed to write output file: " + outputPath, exception);
-            }
-            return true;
         } catch (Exception e) {
             System.out.println(e.getClass().getSimpleName() + ": " + e.getMessage());
             return false;
