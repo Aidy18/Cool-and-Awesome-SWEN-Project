@@ -22,18 +22,11 @@ import user.UserComputeEngAPI;
 import user.WorkHandler;
 
 public class TestMultiUser {
-
-    // TODO 1: change the type of this variable to the name you're using for your
-    // @NetworkAPI
-    // interface
     private UserComputeEngAPI coordinator;
 
     @BeforeEach
     public void initializeComputeEngine() {
-        // TODO 2: create an instance of the implementation of your @NetworkAPI; this is
-        // the component
-        // that the user will make requests to
-        // Store it in the 'coordinator' instance variable
+        // create an instance of the implementation of the coordinator
         StorageComputeEngAPI storeAPI = new StorageComputeEngAPIImplementation();
         ComputationAPI compAPI = new ComputationAPIImplementation();
         coordinator = new ParallelWorkHandler(storeAPI, compAPI);

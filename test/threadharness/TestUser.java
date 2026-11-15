@@ -8,9 +8,6 @@ import user.UserComputeEngAPI;
 import user.UserComputeRequest;
 
 public class TestUser {
-
-    // TODO 3: change the type of this variable to the name you're using for your
-    // @NetworkAPI interface; also update the parameter passed to the constructor
     private final UserComputeEngAPI coordinator;
 
     public TestUser(UserComputeEngAPI coordinator) {
@@ -18,12 +15,12 @@ public class TestUser {
     }
 
     public void run(String outputPath) {
-        // note: delimiter was changed to reflect 
-        // my file format of choice
+        // NOTE: delimiter was changed to reflect
+        // the proper file format
         char delimiter = ',';
         String inputPath = "test" + File.separatorChar + "threadharness" + File.separatorChar + "testInputFile.test";
 
-        // TODO 4: Call the appropriate method(s) on the coordinator to get it to
+        // Call the appropriate method(s) on the coordinator to get it to
         // run the compute job specified by inputPath, outputPath, and delimiter
 
         Source source = new Source() {

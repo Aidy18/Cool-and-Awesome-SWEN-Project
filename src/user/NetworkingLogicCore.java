@@ -16,7 +16,7 @@ import datastore.StoreRequest;
 
 final class NetworkingLogicCore {
     static final int MAX_THREADS = 4;
-    
+
     public NetworkingLogicCore() {
 
     }

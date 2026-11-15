@@ -32,7 +32,7 @@ public class TestUserComputeEngAPI {
     public void testUserAPI() {
         ComputationAPI mockCompAPI = Mockito.mock(ComputationAPI.class);
         StorageComputeEngAPI mockStoreAPI = Mockito.mock(StorageComputeEngAPI.class);
-        
+
         // Provide a valid source and destination.
         Source source = Mockito.mock(Source.class);
         when(source.getPath()).thenReturn("in.txt");
