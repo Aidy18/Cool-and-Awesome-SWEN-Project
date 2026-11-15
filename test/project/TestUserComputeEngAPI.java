@@ -32,11 +32,7 @@ public class TestUserComputeEngAPI {
     public void testUserAPI() {
         ComputationAPI mockCompAPI = Mockito.mock(ComputationAPI.class);
         StorageComputeEngAPI mockStoreAPI = Mockito.mock(StorageComputeEngAPI.class);
-
-        UserComputeEngAPI testAPI = new WorkHandler(mockStoreAPI, mockCompAPI);
-
-        UserComputeRequest mockRequest = Mockito.mock(UserComputeRequest.class);
-
+        
         // Provide a valid source and destination.
         Source source = Mockito.mock(Source.class);
         when(source.getPath()).thenReturn("in.txt");
@@ -55,6 +51,7 @@ public class TestUserComputeEngAPI {
         when(mockData.getIntAt(Mockito.anyInt())).thenReturn(25);
 
         when(mockStoreAPI.read(any(StoreRequest.class))).thenReturn(mockData);
+        when(mockStoreAPI.write(any(StoreRequest.class), any(ComputationResult.class))).thenReturn(true);
 
         // Configure the computation API to return true.
         ComputationResult computationResult = Mockito.mock(ComputationResult.class);

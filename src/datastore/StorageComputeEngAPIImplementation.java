@@ -145,8 +145,6 @@ public class StorageComputeEngAPIImplementation implements StorageComputeEngAPI 
                 results.addAll(parsedResults);
             }
             return true;
-            
-        // Write all to one comma-separated line
         } catch (Exception e) {
             System.out.println(e.getClass().getSimpleName() + ": " + e.getMessage());
             return false;

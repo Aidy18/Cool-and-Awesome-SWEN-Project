@@ -22,6 +22,7 @@ public class WorkHandler implements UserComputeEngAPI {
 
     @Override
     public UserComputeResponse compute(UserComputeRequest request) {
+        /*
         try {
             // Validate the request
             Objects.requireNonNull(request, "Request cannot be null");
@@ -86,6 +87,7 @@ public class WorkHandler implements UserComputeEngAPI {
                 errorMsg = "An unexpected error occurred";
             }
             return new UserComputeResponse(e.getClass().getSimpleName() + ": " + errorMsg);
-        }
+        }*/
+        return NetworkingLogicCore.compute(request, storeAPI, computationAPI, false);
     }
 }

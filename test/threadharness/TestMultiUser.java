@@ -17,6 +17,7 @@ import compute.eng.ComputationAPI;
 import compute.eng.ComputationAPIImplementation;
 import datastore.StorageComputeEngAPI;
 import datastore.StorageComputeEngAPIImplementation;
+import user.ParallelWorkHandler;
 import user.UserComputeEngAPI;
 import user.WorkHandler;
 
@@ -35,7 +36,7 @@ public class TestMultiUser {
         // Store it in the 'coordinator' instance variable
         StorageComputeEngAPI storeAPI = new StorageComputeEngAPIImplementation();
         ComputationAPI compAPI = new ComputationAPIImplementation();
-        coordinator = new WorkHandler(storeAPI, compAPI);
+        coordinator = new ParallelWorkHandler(storeAPI, compAPI);
     }
 
     @Test
