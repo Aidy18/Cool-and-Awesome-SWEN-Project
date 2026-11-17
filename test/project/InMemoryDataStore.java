@@ -35,7 +35,7 @@ public class InMemoryDataStore implements StorageComputeEngAPI {
     }
 
     @Override
-    public void write(StoreRequest request, ComputationResult result) {
+    public boolean write(StoreRequest request, ComputationResult result) {
         // Quick test to write some output
         TestDestination destination = (TestDestination) request.getDestination();
 
@@ -47,5 +47,6 @@ public class InMemoryDataStore implements StorageComputeEngAPI {
             finalValue = Integer.toString(result.getGreatestPrimeFactor());
         }
         destination.getOutput().add(finalValue);
+        return true;
     }
 }

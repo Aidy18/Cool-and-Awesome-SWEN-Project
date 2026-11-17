@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import compute.eng.ComputationAPI;
 import compute.eng.ComputationAPIImplementation;
 import user.Destination;
+import user.ParallelWorkHandler;
 import user.Source;
 import user.UserComputeEngAPI;
 import user.UserComputeRequest;
@@ -26,7 +27,8 @@ public class ComputeEngineIntegrationTest {
         // Instantiate the live implemented APIs
         InMemoryDataStore storageAPI = new InMemoryDataStore();
         ComputationAPI computationAPI = new ComputationAPIImplementation(storageAPI);
-        UserComputeEngAPI userAPI = new WorkHandler(storageAPI, computationAPI);
+        WorkHandler userAPI = new WorkHandler(storageAPI, computationAPI);
+        ParallelWorkHandler ignore = new ParallelWorkHandler(storageAPI, computationAPI);
 
         // Define source/destination to extract from the input/output lists
         TestSource source = new TestSource(input);
@@ -47,7 +49,7 @@ public class ComputeEngineIntegrationTest {
 
             @Override
             public String getDelimiter() {
-                return null;
+                return ",";
             }
 
             @Override

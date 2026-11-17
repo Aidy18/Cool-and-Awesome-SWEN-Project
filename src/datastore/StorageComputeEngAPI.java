@@ -7,5 +7,5 @@ import compute.eng.ComputationResult;
 public interface StorageComputeEngAPI {
     IntData read(StoreRequest storeRequest);
 
-    void write(StoreRequest storeRequest, ComputationResult result);
+    boolean write(StoreRequest storeRequest, ComputationResult result);
 }
